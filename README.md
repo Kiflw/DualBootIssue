@@ -5,6 +5,8 @@ This is only for the GRUB bootloader though. Any other bootloader like systemd b
 
 I'm just a little stubborn since I'm already used to Grub's interface. 
 
+This issue might even be exclusive to dual booting windows and linux with a grub bootloader. After all, I'm still learning.
+
 # Guide to fixing the Grub Bootloader issue after a Windows Update
 
 The problem in this case, is the grub bootloader doesn't come up, possibly due to the lack of the vmlinuz package file.
