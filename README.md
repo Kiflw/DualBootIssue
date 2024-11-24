@@ -3,14 +3,21 @@ Regarding problems encountered while updating Windows 11 or Arch Linux.
 
 This is only for the GRUB bootloader though. Any other bootloader like systemd boot shouldn't have a problem like this.
 
+I have some of the Error Messages that you may have seen when faced with this issue at the bottom of this page.
+
 I'm just a little stubborn since I'm already used to Grub's interface. 
 
 This issue might even be exclusive to dual booting windows and linux with a grub bootloader. After all, I'm still learning.
 
 # Guide to fixing the Grub Bootloader issue after a Windows Update
 
-The problem in this case, is the grub bootloader doesn't come up, possibly due to the lack of the vmlinuz package file.
-So this one is mainly to reinstall the bootloader.
+The problem in this case, is the grub bootloader doesn't come up, or you would see a `grub` or `grubrescue` screen.
+
+This is possibly due to the lack of the vmlinuz package file.
+
+So this one is mainly to reinstall the bootloader via booting into a live USB iso and chrooting into your system. 
+Since this method is most robust compared to other methods, from my experience at least.
+
 This problem took me 4 hours to figure out, so this is here to help.
 
 Dual Boot tends to have two EFI partitions, so make sure you're picking the Linux EFI Partition.
@@ -18,7 +25,11 @@ Dual Boot tends to have two EFI partitions, so make sure you're picking the Linu
 
 ## 1. Boot into your Live USB image.
 
-I used Ubuntu 24.04. Just have it at try. Do not install, of course.
+I used Ubuntu 24.04. Just use `Try or Install Ubuntu`. Do not install, of course.
+
+Ubuntu (safe graphics) also works, in case you're using an Nvidia GPU.
+
+(You CAN type the `nvidia-drm.modeset=1`, `nouveau.modeset=0`, `nomodeset` stuff so that your gpu can boot the live iso, but I just prefer the (safe graphics) method now.)
 
 ## 2. Mounting your Linux filesystem and EFI partition.
 
@@ -105,6 +116,13 @@ seems that `grub-install` might look for files in `/run`, if and when you're rei
 vmlinuz file should be located in the `/boot` directory. If not present, need to reinstall by chroot to regenerate the kernel.
 
 `vmlinuz not found`
+
+```shell
+error: unknown filesystem.
+Entering rescue mode...
+grub rescue>
+```
+
 
 ```shell
 EFI variables are not supported on this system.
