@@ -1,5 +1,7 @@
 # Dual Boot Issues
-Regarding problems encountered while updating Windows 11 or Arch Linux.
+Regarding problems encountered while updating Windows 11 or Arch Linux. This next section will be about Windows 11 update though.
+
+If it is regarding Arch Linux updating, i.e. `failed to mount /boot`, the section is at the bottom.
 
 This is only for the GRUB bootloader though. Any other bootloader like systemd boot shouldn't have a problem like this.
 
@@ -123,9 +125,33 @@ Entering rescue mode...
 grub rescue>
 ```
 
-
 ```shell
 EFI variables are not supported on this system.
 EFI variables are not supported on this system.
 grub-install: error: efibootmgr failed to register the boot entry: No such file or directory.
 ```
+
+#Arch Linux after `sudo pacman -Syu`
+
+If for some reason the error screen shows up when you choose Arch in the Grub Bootloader:
+```shell
+[FAILED] Failed to mount /boot.
+[DEPEND] Dependency failed for Local File Systems.
+You are in emergency mode. After logging in, type "journalctl -xb" to view
+system logs, "systemctl boot" to reboot, or "exit"
+to continue bootup.
+Give root password for maintenance.
+(or press Control-D to continue):
+```
+
+`Ctrl D` does nothing. (at least, for me.)
+You have a few options. You can basically do the stuff above, or you can enter as root, and reinstall the necessary packages that way.
+Just:
+`sudo pacman -S linux`
+
+Once you reboot, the problem should go away.
+
+If not, you can follow the steps in the above sections for a surefire way to solve the problem.
+
+The Boot into Live Environment, Chroot into System, Reinstall Grub Bootloader (that is, if you encountered that problem) and other necessary packages method.
+
