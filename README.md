@@ -1,6 +1,10 @@
 # Dual Boot Issues
 Regarding problems encountered while updating Windows 11 or Arch Linux.
 
+This is only for the GRUB bootloader though. Any other bootloader like systemd boot shouldn't have a problem like this.
+
+I'm just a little stubborn since I'm already used to Grub's interface. 
+
 # Guide to fixing the Grub Bootloader issue after a Windows Update
 
 The problem in this case, is the grub bootloader doesn't come up, possibly due to the lack of the vmlinuz package file.
